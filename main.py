@@ -9,7 +9,7 @@ st.set_page_config(
     initial_sidebar_state="expanded"
 )
 
-# --- CUSTOM DARK THEME STYLING ---
+# --- CUSTOM DARK THEME + NUCLEAR BUTTON FIX ---
 st.markdown("""
     <style>
         .stApp {
@@ -84,7 +84,35 @@ st.markdown("""
             color: #999;
         }
 
-        /* 🔥 GRADIENT BUTTON STYLING */
+        /* --------------------------------------------- */
+        /* 🔥 NUCLEAR FIX FOR FULL-WIDTH SIDEBAR BUTTON  */
+        /* --------------------------------------------- */
+
+        /* Fix padding of the sidebar content (Cloud bug) */
+        [data-testid="stSidebarContent"] {
+            padding-left: 0.5rem !important;
+            padding-right: 0.5rem !important;
+        }
+
+        /* Force button wrapper to expand */
+        [data-testid="stSidebar"] div.stButton {
+            width: 100% !important;
+            padding: 0 !important;
+            margin: 0 !important;
+            display: block !important;
+        }
+
+        /* Force the actual button to fill entire container */
+        [data-testid="stSidebar"] div.stButton > button,
+        [data-testid="stSidebar"] .stButton button,
+        [data-testid="stSidebar"] button {
+            width: 100% !important;
+            min-width: 100% !important;
+            max-width: 100% !important;
+            display: block !important;
+        }
+
+        /* Keep gradient styling intact */
         div.stButton > button {
             background: linear-gradient(90deg, #FF8E53, #FF6B6B) !important;
             color: white !important;
@@ -100,21 +128,6 @@ st.markdown("""
         div.stButton > button:hover {
             transform: translateY(-2px);
             box-shadow: 0 4px 14px rgba(255, 110, 86, 0.4) !important;
-        }
-
-        /* ⭐ FORCE BUTTON WIDTH TO 100% (WORKS ON STREAMLIT CLOUD) */
-        [data-testid="stSidebar"] button,
-        [data-testid="stSidebar"] div.stButton > button,
-        [data-testid="stSidebar"] .stButton button {
-            width: 100% !important;
-            min-width: 100% !important;
-            max-width: 100% !important;
-        }
-
-        /* Extra: ensure container also stretches */
-        [data-testid="stSidebar"] div.stButton {
-            display: block !important;
-            width: 100% !important;
         }
     </style>
 """, unsafe_allow_html=True)
@@ -133,7 +146,7 @@ cuisine = st.sidebar.selectbox(
      "Vietnamese", "Lebanese", "Mediterranean", "Brazilian", "Moroccan", "British")
 )
 
-# --- NOW THE BUTTON WILL BE FULL-WIDTH ON CLOUD ---
+# --- FULL-WIDTH BUTTON (NOW GUARANTEED) ---
 generate = st.sidebar.button("Generate Menu")
 
 st.sidebar.markdown("---")
@@ -153,14 +166,13 @@ if generate:
         st.session_state["response"] = response
 
 
-# --- DISPLAY SAVED RESULT IF EXISTS ---
+# --- DISPLAY RESULT ---
 if "response" in st.session_state:
     response = st.session_state["response"]
 
     restaurant_name = response.get('restaurant_name', 'Unnamed Restaurant')
     menu_items = response.get('menu_items', '').split(',')
 
-    # --- Restaurant Section ---
     st.markdown(f"<h2 class='section-title'>🏠 {restaurant_name}</h2>", unsafe_allow_html=True)
     st.caption(f"A sophisticated {cuisine} dining experience, crafted with AI creativity.")
 
