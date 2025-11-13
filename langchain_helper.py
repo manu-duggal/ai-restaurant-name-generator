@@ -10,7 +10,7 @@ groq_api_key = st.secrets.get("GROQ_API_KEY")
 
 llm = ChatGroq(
     model = 'llama-3.3-70b-versatile',
-    temperature = 0.9,
+    temperature = 2,
     groq_api_key = groq_api_key,
     max_tokens = 400,
     max_retries = 2
