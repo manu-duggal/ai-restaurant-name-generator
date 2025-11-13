@@ -84,7 +84,7 @@ st.markdown("""
             color: #999;
         }
 
-        /* 🔥 FIXED BUTTON STYLING */
+        /* 🔥 GRADIENT BUTTON STYLING */
         div.stButton > button {
             background: linear-gradient(90deg, #FF8E53, #FF6B6B) !important;
             color: white !important;
@@ -102,11 +102,20 @@ st.markdown("""
             box-shadow: 0 4px 14px rgba(255, 110, 86, 0.4) !important;
         }
 
-        /* ⭐ Make sidebar button EXACT same width as dropdown */
-        [data-testid="stSidebar"] button {
+        /* ⭐ FORCE BUTTON WIDTH TO 100% (WORKS ON STREAMLIT CLOUD) */
+        [data-testid="stSidebar"] button,
+        [data-testid="stSidebar"] div.stButton > button,
+        [data-testid="stSidebar"] .stButton button {
             width: 100% !important;
+            min-width: 100% !important;
+            max-width: 100% !important;
         }
 
+        /* Extra: ensure container also stretches */
+        [data-testid="stSidebar"] div.stButton {
+            display: block !important;
+            width: 100% !important;
+        }
     </style>
 """, unsafe_allow_html=True)
 
@@ -124,7 +133,7 @@ cuisine = st.sidebar.selectbox(
      "Vietnamese", "Lebanese", "Mediterranean", "Brazilian", "Moroccan", "British")
 )
 
-# --- PERFECTLY SYMMETRIC FULL-WIDTH BUTTON ---
+# --- NOW THE BUTTON WILL BE FULL-WIDTH ON CLOUD ---
 generate = st.sidebar.button("Generate Menu")
 
 st.sidebar.markdown("---")
