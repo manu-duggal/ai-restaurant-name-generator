@@ -147,7 +147,7 @@ cuisine = st.sidebar.selectbox(
 )
 
 # --- FULL-WIDTH BUTTON (NOW GUARANTEED) ---
-generate = st.sidebar.button("Generate Menu")
+generate = st.sidebar.button("   Generate Menu   ")
 
 st.sidebar.markdown("---")
 st.sidebar.caption("Built with ❤️ By MD using Streamlit + LangChain")
