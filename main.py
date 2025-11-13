@@ -93,7 +93,6 @@ st.markdown("""
             border-radius: 10px !important;
             font-size: 1rem !important;
             font-weight: 600 !important;
-            width: 100% !important;
             transition: 0.2s ease-in-out !important;
             margin-top: 10px !important;
         }
@@ -101,6 +100,11 @@ st.markdown("""
         div.stButton > button:hover {
             transform: translateY(-2px);
             box-shadow: 0 4px 14px rgba(255, 110, 86, 0.4) !important;
+        }
+
+        /* ⭐ Make sidebar button EXACT same width as dropdown */
+        [data-testid="stSidebar"] button {
+            width: 100% !important;
         }
 
     </style>
@@ -120,7 +124,7 @@ cuisine = st.sidebar.selectbox(
      "Vietnamese", "Lebanese", "Mediterranean", "Brazilian", "Moroccan", "British")
 )
 
-# --- BEAUTIFUL VISIBLE GENERATE BUTTON ---
+# --- PERFECTLY SYMMETRIC FULL-WIDTH BUTTON ---
 generate = st.sidebar.button("Generate Menu")
 
 st.sidebar.markdown("---")
