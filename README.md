@@ -6,7 +6,7 @@ Built with **Streamlit**, **LangChain**, and **Groq Llama 3.3**, this app demons
 ---
 
 ## 🌐 Live Demo
-👉 [Launch on Streamlit Cloud](https://<your-username>-ai-restaurant-name-generator.streamlit.app)  
+👉 [Launch on Streamlit Cloud](https://md-restaurant-generator.streamlit.app)  
 
 ---
 
